@@ -1,15 +1,19 @@
-import { LampDemo } from "./components/ui/lamp"
-import { VortexDemo } from "./components/VortexDemo"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Landing from './pages/Landing';
+import Home from './pages/Home'
+
 
 function App() {
-
-
   return (
-    <>
-    {/* <LampDemo/> */}
-    <VortexDemo/>
-    </>
-  )
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
-export default App
+export default App;
