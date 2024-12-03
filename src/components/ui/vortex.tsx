@@ -42,7 +42,6 @@ export const Vortex = (props: VortexProps) => {
   let particleProps = new Float32Array(particlePropsLength);
   let center: [number, number] = [0, 0];
 
-
   const TAU: number = 2 * Math.PI;
 
   const rand = (n: number): number => n * Math.random();
@@ -59,7 +58,6 @@ export const Vortex = (props: VortexProps) => {
     const container = containerRef.current;
     if (canvas && container) {
       const ctx = canvas.getContext("2d");
-      console.log(ctx)
       if (ctx) {
         resize(canvas, ctx);
         initParticles();
@@ -70,7 +68,6 @@ export const Vortex = (props: VortexProps) => {
 
   const initParticles = () => {
     tick = 0;
-    // simplex = new SimplexNoise();
     particleProps = new Float32Array(particlePropsLength);
 
     for (let i = 0; i < particlePropsLength; i += particlePropCount) {
@@ -185,10 +182,7 @@ export const Vortex = (props: VortexProps) => {
     return x > canvas.width || x < 0 || y > canvas.height || y < 0;
   };
 
-  const resize = (
-    canvas: HTMLCanvasElement,
-    ctx?: CanvasRenderingContext2D
-  ) => {
+  const resize = (canvas: HTMLCanvasElement, ctx?: CanvasRenderingContext2D) => {
     const { innerWidth, innerHeight } = window;
 
     canvas.width = innerWidth;
