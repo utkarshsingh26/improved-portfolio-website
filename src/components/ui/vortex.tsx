@@ -57,11 +57,11 @@ export const Vortex = (props: VortexProps) => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (canvas && container) {
-      const ctx = canvas.getContext("2d");
-      if (ctx) {
-        resize(canvas, ctx);
+      const _ctx = canvas.getContext("2d");
+      if (_ctx) {
+        resize(canvas, _ctx);
         initParticles();
-        draw(canvas, ctx);
+        draw(canvas, _ctx);
       }
     }
   };
@@ -94,28 +94,28 @@ export const Vortex = (props: VortexProps) => {
     particleProps.set([x, y, vx, vy, life, ttl, speed, radius, hue], i);
   };
 
-  const draw = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+  const draw = (canvas: HTMLCanvasElement, _ctx: CanvasRenderingContext2D) => {
     tick++;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    _ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = backgroundColor;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    _ctx.fillStyle = backgroundColor;
+    _ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    drawParticles(ctx);
-    renderGlow(canvas, ctx);
-    renderToScreen(canvas, ctx);
+    drawParticles(_ctx);
+    renderGlow(canvas, _ctx);
+    renderToScreen(canvas, _ctx);
 
-    window.requestAnimationFrame(() => draw(canvas, ctx));
+    window.requestAnimationFrame(() => draw(canvas, _ctx));
   };
 
-  const drawParticles = (ctx: CanvasRenderingContext2D) => {
+  const drawParticles = (_ctx: CanvasRenderingContext2D) => {
     for (let i = 0; i < particlePropsLength; i += particlePropCount) {
-      updateParticle(i, ctx);
+      updateParticle(i, _ctx);
     }
   };
 
-  const updateParticle = (i: number, ctx: CanvasRenderingContext2D) => {
+  const updateParticle = (i: number, _ctx: CanvasRenderingContext2D) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -142,7 +142,7 @@ export const Vortex = (props: VortexProps) => {
     radius = particleProps[i8];
     hue = particleProps[i9];
 
-    drawParticle(x, y, x2, y2, life, ttl, radius, hue, ctx);
+    drawParticle(x, y, x2, y2, life, ttl, radius, hue, _ctx);
 
     life++;
 
@@ -164,25 +164,25 @@ export const Vortex = (props: VortexProps) => {
     ttl: number,
     radius: number,
     hue: number,
-    ctx: CanvasRenderingContext2D
+    _ctx: CanvasRenderingContext2D
   ) => {
-    ctx.save();
-    ctx.lineCap = "round";
-    ctx.lineWidth = radius;
-    ctx.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
-    ctx.beginPath();
-    ctx.moveTo(x, y);
-    ctx.lineTo(x2, y2);
-    ctx.stroke();
-    ctx.closePath();
-    ctx.restore();
+    _ctx.save();
+    _ctx.lineCap = "round";
+    _ctx.lineWidth = radius;
+    _ctx.strokeStyle = `hsla(${hue},100%,60%,${fadeInOut(life, ttl)})`;
+    _ctx.beginPath();
+    _ctx.moveTo(x, y);
+    _ctx.lineTo(x2, y2);
+    _ctx.stroke();
+    _ctx.closePath();
+    _ctx.restore();
   };
 
   const checkBounds = (x: number, y: number, canvas: HTMLCanvasElement) => {
     return x > canvas.width || x < 0 || y > canvas.height || y < 0;
   };
 
-  const resize = (canvas: HTMLCanvasElement, ctx?: CanvasRenderingContext2D) => {
+  const resize = (canvas: HTMLCanvasElement, _ctx?: CanvasRenderingContext2D) => {
     const { innerWidth, innerHeight } = window;
 
     canvas.width = innerWidth;
@@ -194,38 +194,38 @@ export const Vortex = (props: VortexProps) => {
 
   const renderGlow = (
     canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D
+    _ctx: CanvasRenderingContext2D
   ) => {
-    ctx.save();
-    ctx.filter = "blur(8px) brightness(200%)";
-    ctx.globalCompositeOperation = "lighter";
-    ctx.drawImage(canvas, 0, 0);
-    ctx.restore();
+    _ctx.save();
+    _ctx.filter = "blur(8px) brightness(200%)";
+    _ctx.globalCompositeOperation = "lighter";
+    _ctx.drawImage(canvas, 0, 0);
+    _ctx.restore();
 
-    ctx.save();
-    ctx.filter = "blur(4px) brightness(200%)";
-    ctx.globalCompositeOperation = "lighter";
-    ctx.drawImage(canvas, 0, 0);
-    ctx.restore();
+    _ctx.save();
+    _ctx.filter = "blur(4px) brightness(200%)";
+    _ctx.globalCompositeOperation = "lighter";
+    _ctx.drawImage(canvas, 0, 0);
+    _ctx.restore();
   };
 
   const renderToScreen = (
     canvas: HTMLCanvasElement,
-    ctx: CanvasRenderingContext2D
+    _ctx: CanvasRenderingContext2D
   ) => {
-    ctx.save();
-    ctx.globalCompositeOperation = "lighter";
-    ctx.drawImage(canvas, 0, 0);
-    ctx.restore();
+    _ctx.save();
+    _ctx.globalCompositeOperation = "lighter";
+    _ctx.drawImage(canvas, 0, 0);
+    _ctx.restore();
   };
 
   useEffect(() => {
     setup();
     window.addEventListener("resize", () => {
       const canvas = canvasRef.current;
-      const ctx = canvas?.getContext("2d");
-      if (canvas && ctx) {
-        resize(canvas, ctx);
+      const _ctx = canvas?.getContext("2d");
+      if (canvas && _ctx) {
+        resize(canvas, _ctx);
       }
     });
   }, []);
