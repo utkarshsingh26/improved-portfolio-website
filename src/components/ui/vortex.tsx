@@ -59,7 +59,7 @@ export const Vortex = (props: VortexProps) => {
     const container = containerRef.current;
     if (canvas && container) {
       const ctx = canvas.getContext("2d");
-
+      console.log(ctx)
       if (ctx) {
         resize(canvas, ctx);
         initParticles();
