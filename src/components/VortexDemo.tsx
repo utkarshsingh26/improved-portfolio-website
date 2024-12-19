@@ -1,7 +1,12 @@
 import { Vortex } from "./ui/vortex";
 import './VortexDemo.css';
+import Home from '../pages/Home';
+import { useNavigate } from 'react-router-dom';
 
 export function VortexDemo() {
+
+  const navigate = useNavigate();
+  
   return (
     <div className="w-full h-screen">
       <Vortex
@@ -12,7 +17,7 @@ export function VortexDemo() {
           Utkarsh Singh.
         </h2>
         <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center fade-in" style={{ animationDelay: '2s' }}>
-          Building better software.
+          Shooting for the stars
         </p>
         <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center fade-in" style={{ animationDelay: '3s' }}>
           Since 2017.
