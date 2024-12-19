@@ -1,12 +1,16 @@
 import { Vortex } from "./ui/vortex";
 import './VortexDemo.css';
-import Home from '../pages/Home';
 import { useNavigate } from 'react-router-dom';
+import Home from '../pages/Home'
 
 export function VortexDemo() {
-
   const navigate = useNavigate();
-  
+
+  // Function to handle navigation
+  const goToHome = () => {
+    navigate('/home'); // Adjust the path as needed if your home page has a different route
+  };
+
   return (
     <div className="w-full h-screen">
       <Vortex
@@ -23,7 +27,9 @@ export function VortexDemo() {
           Since 2017.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 fade-in" style={{ animationDelay: '4s' }}>
-          <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
+          <button 
+            onClick={goToHome}
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 transition duration-200 rounded-lg text-white shadow-[0px_2px_0px_0px_#FFFFFF40_inset]">
             Find out more
           </button>
         </div>
