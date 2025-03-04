@@ -6,9 +6,9 @@ import Home from '../pages/Home'
 export function VortexDemo() {
   const navigate = useNavigate();
 
-  // Function to handle navigation
+
   const goToHome = () => {
-    navigate('/home'); // Adjust the path as needed if your home page has a different route
+    navigate('/home'); 
   };
 
   return (
@@ -24,7 +24,7 @@ export function VortexDemo() {
           Shooting for the stars
         </p>
         <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center fade-in" style={{ animationDelay: '3s' }}>
-          Since 2017.
+          Since 1998.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 fade-in" style={{ animationDelay: '4s' }}>
           <button 
