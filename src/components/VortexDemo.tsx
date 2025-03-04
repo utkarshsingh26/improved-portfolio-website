@@ -1,7 +1,6 @@
 import { Vortex } from "./ui/vortex";
 import './VortexDemo.css';
 import { useNavigate } from 'react-router-dom';
-import Home from '../pages/Home'
 
 export function VortexDemo() {
   const navigate = useNavigate();
